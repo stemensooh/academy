@@ -1,4 +1,4 @@
-namespace webapi;
+namespace ACADEMY.UI.API;
 
 public class WeatherForecast
 {
