@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.33927.210
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ACADEMY.UI.APP", "angularapp\ACADEMY.UI.APP.esproj", "{CAFC9BC0-5CD5-4868-AD7E-FB4EF347C679}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACADEMY.UI.API", "webapi\ACADEMY.UI.API.csproj", "{1DF40B18-916F-4EE9-9B99-B94593DEFF8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{7B553053-B0B2-401E-8593-3CE437560C96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APPLICATION", "APPLICATION", "{AE87FB89-8B2D-4F5B-A678-24D395B86F97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "INFRASTRUCTURE", "INFRASTRUCTURE", "{8E9E7FF7-C3C5-4DC8-A65F-BC4BA1B441D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAFC9BC0-5CD5-4868-AD7E-FB4EF347C679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFC9BC0-5CD5-4868-AD7E-FB4EF347C679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFC9BC0-5CD5-4868-AD7E-FB4EF347C679}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CAFC9BC0-5CD5-4868-AD7E-FB4EF347C679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFC9BC0-5CD5-4868-AD7E-FB4EF347C679}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAFC9BC0-5CD5-4868-AD7E-FB4EF347C679}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1DF40B18-916F-4EE9-9B99-B94593DEFF8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DF40B18-916F-4EE9-9B99-B94593DEFF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DF40B18-916F-4EE9-9B99-B94593DEFF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DF40B18-916F-4EE9-9B99-B94593DEFF8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CAFC9BC0-5CD5-4868-AD7E-FB4EF347C679} = {AE87FB89-8B2D-4F5B-A678-24D395B86F97}
+		{1DF40B18-916F-4EE9-9B99-B94593DEFF8A} = {AE87FB89-8B2D-4F5B-A678-24D395B86F97}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5CDE9FD-9505-4BE8-8A7D-1B6F50206811}
+	EndGlobalSection
+EndGlobal
