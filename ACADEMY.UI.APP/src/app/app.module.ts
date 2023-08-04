@@ -1,31 +1,48 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from "./shared/shared.module";
+import { AppRoutingModule } from './app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+// // for HttpClient import:
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+// // for Router import:
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+// // for Core import:
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
-import { AppRoutingModule, routes } from './app-routing.module';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
+// import { LoginComponent } from './auth/login/login.component';
 
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
+    OverlayModule,
     SharedModule,
+    AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, {
-      useHash: true,
-      anchorScrolling: 'enabled',
-      scrollPositionRestoration: 'enabled',
-    }),
-    LayoutModule
+    NgbModule,
+    //     // for HttpClient use:
+    LoadingBarHttpClientModule,
+//     // for Router use:
+    LoadingBarRouterModule,
+//     // for Core use:
+    LoadingBarModule
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
