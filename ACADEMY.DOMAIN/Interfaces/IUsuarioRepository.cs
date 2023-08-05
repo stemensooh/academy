@@ -13,5 +13,6 @@ namespace ACADEMY.DOMAIN.Interfaces
         bool TienePermisoUsuario(int idUsuario, string[] permisos, int idSesion);
         Task<Usuario?> GetByUserName(string? Username);
         Task<UsuarioDTO?> GetUsuarioSesion(long idUsuario, long idSesion);
+        IAsyncEnumerable<UsuarioIntentoDTO> GetUsuarioIntentos(long? idUsuario);
     }
 }

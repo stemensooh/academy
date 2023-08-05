@@ -17,6 +17,8 @@ namespace ACADEMY.INFRA.SQL.Data
         public DbSet<UsuarioSesion> UsuarioSesion { get; set; }
         public DbSet<AsignaOpcionPerfil> AsignaOpcionPerfil { get; set; }
         public DbSet<Opciones> Opciones { get; set; }
+        public DbSet<UsuarioIntentoLogin> UsuarioIntentoLogin { get; set; }
+        public DbSet<Menu> Menu { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

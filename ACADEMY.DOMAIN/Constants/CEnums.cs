@@ -2,7 +2,7 @@
 {
     public static class CEnums
     {
-        public enum SfedocStatus
+        public enum AcademyStatus
         {
             INSERTED,
             UPDATED,

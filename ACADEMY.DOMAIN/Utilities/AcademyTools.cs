@@ -69,7 +69,7 @@ namespace ACADEMY.DOMAIN.Utilities
             return Convert.ToBase64String(Encoding.ASCII.GetBytes(usuario + ":" + DescifrarClave(clave)));
         }
 
-        public static string CifrarClave(string stringToEncrypt)
+        public static string CifrarClave(string? stringToEncrypt)
         {
             if (!string.IsNullOrWhiteSpace(stringToEncrypt))
             {

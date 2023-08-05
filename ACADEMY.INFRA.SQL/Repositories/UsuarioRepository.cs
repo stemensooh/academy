@@ -32,10 +32,9 @@ namespace ACADEMY.INFRA.SQL.Repositories
         public Task<UsuarioDTO?> GetUsuarioSesion(long idUsuario, long idSesion)
         {
             return (from usuario in _context.Usuario
-                    join sesion in _context.UsuarioSesion
-                    on usuario.Id equals sesion.IdUsuario
-                    join perfil in _context.Perfil
-                    on usuario.IdPerfil equals perfil.Id
+                    join sesion in _context.UsuarioSesion on usuario.Id equals sesion.IdUsuario
+                    join perfil in _context.Perfil on usuario.IdPerfil equals perfil.Id
+
                     where
                         usuario.Id == idUsuario &&
                         sesion.Id == idSesion
@@ -55,6 +54,26 @@ namespace ACADEMY.INFRA.SQL.Repositories
                                         }).ToList()
                         }
                     }).FirstOrDefaultAsync();
+        }
+
+        public IAsyncEnumerable<UsuarioIntentoDTO> GetUsuarioIntentos(long? idUsuario)
+        {
+            return (from intentos in _context.UsuarioIntentoLogin
+                    join usuario in _context.Usuario
+                    on intentos.Username equals usuario.Username
+                    where usuario.Id == idUsuario
+                    group intentos by new
+                    {
+                        intentos.IpIntento,
+                        Fecha = _context.FormatFecha(intentos.FechaIntento, "yyyy-MM-dd")
+                    } into query
+                    orderby query.Key.Fecha descending
+                    select new UsuarioIntentoDTO
+                    {
+                        Ip = query.Key.IpIntento,
+                        Fecha = query.Key.Fecha,
+                        Cantidad = query.Count()
+                    }).AsAsyncEnumerable();
         }
 
     }

@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
   // animations: [fadeInAnimation],
 })
 export class ContentComponent implements OnInit, AfterViewInit {
-  opciones$: Observable<Opcion[]> | null = null;
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -49,33 +49,6 @@ export class ContentComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log('Content - ngOnInit');
-    // this.service.getUsuarioMenu().subscribe(opciones => {
-    //   console.log('getUsuarioMenu', opciones);
-    // })
-    this.opciones$ = this.service.getUsuarioMenu().pipe(
-      map((opciones) => {
-        console.log('getUsuarioMenu', opciones);
-        let opcionesPadre: Opcion[] = [];
-        let dictionary: { [key: string]: Opcion } = {};
-        opciones.forEach((opcion) => {
-          if (opcion.idPadre == null) {
-            opcion.opciones = [];
-            opcionesPadre.push(opcion);
-          }
-          dictionary[opcion.id] = opcion;
-        });
-        opciones.forEach((opcion) => {
-          if (opcion.idPadre != null) {
-            dictionary[opcion.idPadre].opciones.push(dictionary[opcion.id]);
-          }
-        });
-        return opcionesPadre;
-      })
-    );
-
-    // this.opciones$.subscribe(data => {
-    //   console.log(data);
-    // })
+    
   }
 }

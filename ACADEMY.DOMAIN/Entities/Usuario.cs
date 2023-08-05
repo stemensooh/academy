@@ -16,6 +16,11 @@ namespace ACADEMY.DOMAIN.Entities
         public DateTime? UltimaConexion { get; set; }
         public DateTime FechaActualizarPassword { get; set; }
 
+        public DateTime? FechaCreacion { get; set; }
+        public int? UsuarioCreacion { get; set; }
+
+        public DateTime? FechaModificacion { get; set; }
+        public int? UsuarioModificacion { get; set; }
 
         public int? IdPerfil { get; set; }
 

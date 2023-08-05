@@ -16,10 +16,10 @@
 
     public class ConnectionCredentials
     {
-        public SfedocPanama AcademySQL { get; set; }
+        public AcademyPanama AcademySQL { get; set; }
     }
 
-    public class SfedocPanama
+    public class AcademyPanama
     {
         public string DataSource { get; set; }
 

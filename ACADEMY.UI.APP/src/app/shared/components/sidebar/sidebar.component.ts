@@ -1,9 +1,11 @@
-import { Component, ViewEncapsulation, HostListener, Input } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component, ViewEncapsulation, HostListener, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Menu, NavService } from '../../services/nav.service';
 import { LayoutService } from '../../services/layout.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Opcion } from 'src/app/core/interfaces/roles';
+import { AppService } from 'src/app/app.service';
+import { HomeService } from 'src/app/pages/home/home.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,8 +13,8 @@ import { Opcion } from 'src/app/core/interfaces/roles';
   styleUrls: ['./sidebar.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SidebarComponent {
-  @Input() opciones$: Observable<Opcion[]> | null = null;
+export class SidebarComponent implements OnInit {
+  opciones$: Observable<Menu[]> | null = null;
 
   public iconSidebar;
   public menuItems: Menu[];
@@ -25,7 +27,12 @@ export class SidebarComponent {
   public leftArrowNone: boolean = true;
   public rightArrowNone: boolean = false;
 
-  constructor(private router: Router, public navServices: NavService,
+  constructor(
+    private route: ActivatedRoute,
+    private appService: AppService,
+    private service: HomeService,
+    private router: Router, 
+    public navServices: NavService,
     public layout: LayoutService) {
     // this.navServices.items.subscribe(menuItems => {
     //   this.menuItems = menuItems;
@@ -52,6 +59,38 @@ export class SidebarComponent {
     //   });
     // });
 
+  }
+
+  ngOnInit(): void {
+    console.log('Content - ngOnInit');
+    this.service.getUsuarioMenu().subscribe(opciones => {
+      console.log('getUsuarioMenu', opciones);
+    })
+    this.opciones$ = this.service.getUsuarioMenu().pipe(
+      map((opciones: Menu[]) => {
+
+        console.log('getUsuarioMenu', opciones);
+        let opcionesPadre: Menu[] = [];
+        let dictionary: { [key: string]: Menu } = {};
+        opciones.forEach((opcion) => {
+          if (opcion.idPadre == null) {
+            opcion.children = [];
+            opcionesPadre.push(opcion);
+          }
+          dictionary[opcion.id] = opcion;
+        });
+        opciones.forEach((opcion) => {
+          if (opcion.idPadre != null) {
+            dictionary[opcion.idPadre].children.push(dictionary[opcion.id]);
+          }
+        });
+        return opcionesPadre;
+      })
+    );
+
+    // this.opciones$.subscribe(data => {
+    //   console.log(data);
+    // })
   }
 
   @HostListener('window:resize', ['$event'])

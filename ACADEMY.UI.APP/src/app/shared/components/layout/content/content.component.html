@@ -5,7 +5,7 @@
     <!-- Page Body Start-->
     <div class="page-body-wrapper">
       <div class="sidebar-wrapper" [attr.sidebar-layout]="layout.config.settings.sidebar_type" [attr.icon]="layout.config.settings.icon" [class.close_icon]="navServices.collapseSidebar">
-        <app-sidebar [opciones$]="opciones$"></app-sidebar>
+        <app-sidebar></app-sidebar>
       </div>
       <div class="page-body">
         <main [@fadeInAnimation]="getRouterOutletState(o)">

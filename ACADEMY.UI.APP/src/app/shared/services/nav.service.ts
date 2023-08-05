@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 
 // Menu
 export interface Menu {
+  id?: number;
   headTitle1?: string;
   headTitle2?: string;
   path?: string;
@@ -16,6 +17,7 @@ export interface Menu {
   active?: boolean;
   bookmark?: boolean;
   children?: Menu[];
+  idPadre?: number;
 }
 
 @Injectable({
