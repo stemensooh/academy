@@ -10,6 +10,7 @@ namespace ACADEMY.DOMAIN.Interfaces
     {
         IUsuarioRepository UsuarioRepository { get; }
         ISesionRepository SesionRepository { get; }
+        IPerfilRepository PerfilRepository { get; }
         Task SaveChangesAsync();
     }
 }

@@ -39,6 +39,23 @@
                   </div>
                 </li>
 
+                <!-- <ng-container *ngFor="let opcion of opciones$ | async">
+                  <ng-container *ngIf="opcion.opciones.length > 0">
+                    <div mat-subheader>{{opcion.nombre}}</div>
+                    <ng-container *ngFor="let subopcion of opcion.opciones">
+                      <mat-list-item (click)="navigate(subopcion.url)" class="cursor-point">
+                        <mat-icon matListItemIcon class="matlisticon">{{subopcion.icono}}</mat-icon>
+                        <div matListItemTitle [innerHTML]="subopcion.nombre"></div>
+                      </mat-list-item>
+                    </ng-container>
+                    <mat-divider></mat-divider>
+                  </ng-container>
+                </ng-container>
+
+                <li>
+
+                </li> -->
+
                 <li [class]="menuItem.headTitle1 ? 'sidebar-main-title' : 'sidebar-list'" *ngFor="let menuItem of menuItems" [ngClass]="{ active: menuItem.active }">
                   <div *ngIf="menuItem.headTitle1">
                     <h6 class="lan-1">{{ menuItem.headTitle1 }}</h6>
@@ -121,6 +138,7 @@
                     </li>
                   </ul>
                 </li>
+                
               </div>
             </div>
           </div>

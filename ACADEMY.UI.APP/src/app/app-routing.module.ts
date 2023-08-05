@@ -7,6 +7,11 @@ import { authGuard } from './shared/guard/auth.guard';
 
 
 export const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: AuthComponent,
+  //   canMatch: [authGuard]
+  // },
   {
     path: '',
     component: ContentComponent,
@@ -21,15 +26,15 @@ export const routes: Routes = [
       breadcrumb: "auth"
     }
   },
-  {
-    path: '**',
-    redirectTo: ''
-  }
   // {
-  //   path: '',
-  //   redirectTo: 'auth',
-  //   pathMatch: 'full',
+  //   path: '**',
+  //   redirectTo: ''
   // },
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

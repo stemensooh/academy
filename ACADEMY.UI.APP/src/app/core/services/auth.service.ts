@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import {
   HandleError,
@@ -18,14 +18,14 @@ import { Captcha } from '../interfaces/utils';
   providedIn: 'root',
 })
 export class AuthService {
-  private url: string;
   private handleError!: HandleError;
   constructor(
+    @Inject('BASE_URL') private url: string,
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandlerService
   ) {
     this.handleError = httpErrorHandler.createHandleError('AuthService');
-    this.url = '/api/auth';
+    this.url += 'auth';
   }
 
   getCaptchaConfig = () => this.http.get<Captcha>(`${this.url}/captcha`)

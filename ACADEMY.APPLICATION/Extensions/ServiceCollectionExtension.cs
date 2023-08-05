@@ -46,10 +46,14 @@ namespace ACADEMY.APPLICATION.Extensions
             services.AddSingleton<IConfigService>(_ => new ConfigService(config));
             services.AddSingleton<ILogService, LogService>();
             services.AddScoped<IHttpContextService, HttpContextService>();
+
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ISesionRepository, SesionRepository>(); 
+            services.AddScoped<IPerfilRepository, PerfilRepository>();
+
             services.AddScoped<ICorreoInfraService, CorreoInfraService>(); 
-            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAuthService, AuthService>(); 
             string cadenaConexion = AcademyTools.CrearCadenaConexion(
                 config.ConnectionCredentials.AcademySQL.DataSource,
                 config.ConnectionCredentials.AcademySQL.InitialCatalog,

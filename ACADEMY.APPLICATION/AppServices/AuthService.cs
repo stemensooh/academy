@@ -37,7 +37,7 @@ namespace ACADEMY.APPLICATION.AppServices
             _emailService = emailService;
         }
 
-        public async Task<AcademyToken> Login(UsuarioDTO usuarioDTO)
+        public async Task<AcademyToken> Login(LoginDto usuarioDTO)
         {
             var usuario = await _unitOfWork.UsuarioRepository.GetByUserName(usuarioDTO.Username);
             if (usuario != null)
@@ -94,7 +94,7 @@ namespace ACADEMY.APPLICATION.AppServices
                 Nombres = $"{usuario.Perfil.Nombre} {usuario.Perfil.Apellido}",
                 Usuario = usuario.Username,
                 Perfil = usuario.Perfil.Nombre,
-                FechaClave = usuario.FechaActualizarPassword.Value.ToString("dd-MM-yyyy"),
+                FechaClave = usuario.FechaActualizarPassword.ToString("dd-MM-yyyy"),
                 Token = new JwtSecurityTokenHandler().WriteToken(result),
                 FechaExpiracion = result.ValidTo
             };

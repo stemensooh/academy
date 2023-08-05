@@ -1,22 +1,33 @@
-import { Component, OnInit, Inject } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
-import { NavService } from "../../services/nav.service";
-import { LayoutService } from "../../services/layout.service";
-import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { NavService } from '../../services/nav.service';
+import { LayoutService } from '../../services/layout.service';
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
+import { Opcion } from 'src/app/core/interfaces/roles';
+import { Observable } from 'rxjs';
+import { AppService } from 'src/app/app.service';
+import { HomeService } from 'src/app/pages/home/home.service';
+import { map } from 'rxjs/operators';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   public elem: any;
+  
 
-  constructor(public layout: LayoutService, public navServices: NavService, @Inject(DOCUMENT) private document: any) {}
+  constructor(
+    public layout: LayoutService,
+    public navServices: NavService,
+    @Inject(DOCUMENT) private document: any,
+  ) {}
 
   ngOnInit() {
     this.elem = document.documentElement;
+    
   }
 
   sidebarToggle() {
@@ -26,8 +37,8 @@ export class HeaderComponent implements OnInit {
   }
 
   layoutToggle() {
-    if ((this.layout.config.settings.layout_version = "dark-only")) {
-      document.body.classList.toggle("dark-only");
+    if ((this.layout.config.settings.layout_version = 'dark-only')) {
+      document.body.classList.toggle('dark-only');
     }
     document.body.remove;
   }

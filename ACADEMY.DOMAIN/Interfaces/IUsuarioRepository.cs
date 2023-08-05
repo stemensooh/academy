@@ -1,4 +1,5 @@
-﻿using ACADEMY.DOMAIN.Entities;
+﻿using ACADEMY.DOMAIN.DTOs;
+using ACADEMY.DOMAIN.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace ACADEMY.DOMAIN.Interfaces
     {
         bool TienePermisoUsuario(int idUsuario, string[] permisos, int idSesion);
         Task<Usuario?> GetByUserName(string? Username);
+        Task<UsuarioDTO?> GetUsuarioSesion(long idUsuario, long idSesion);
     }
 }

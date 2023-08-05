@@ -15,6 +15,8 @@ namespace ACADEMY.INFRA.SQL.Data
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Perfil> Perfil { get; set; }
         public DbSet<UsuarioSesion> UsuarioSesion { get; set; }
+        public DbSet<AsignaOpcionPerfil> AsignaOpcionPerfil { get; set; }
+        public DbSet<Opciones> Opciones { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,6 +24,8 @@ namespace ACADEMY.INFRA.SQL.Data
             modelBuilder.HasDefaultSchema("dbo");
             modelBuilder.Entity<Usuario>().HasOne(u => u.Perfil).WithMany(p => p.Usuarios).HasForeignKey(u => u.IdPerfil);
             modelBuilder.Entity<Usuario>().HasMany(u => u.Sesiones).WithOne(p => p.Usuario).HasForeignKey(u => u.IdUsuario);
+            modelBuilder.Entity<AsignaOpcionPerfil>().HasOne(op => op.Perfil).WithMany(p => p.AsignaOpcionPerfil).HasForeignKey(op => op.IdPerfil);
+            modelBuilder.Entity<AsignaOpcionPerfil>().HasOne(op => op.Opcion).WithMany(o => o.AsignaOpcionPerfil).HasForeignKey(op => op.IdOpcion);
 
             modelBuilder.HasDbFunction(typeof(AcademyContext)
                            .GetMethod(nameof(FormatFecha), new[] { typeof(DateTime?), typeof(string) }))

@@ -32,7 +32,7 @@ namespace ACADEMY.UI.API.Controllers
         }
 
         [HttpPost("login")]
-        public Task<AcademyToken> Login(UsuarioDTO usuarioDTO)
+        public Task<AcademyToken> Login(LoginDto usuarioDTO)
         {
             return _authService.Login(usuarioDTO);
         }

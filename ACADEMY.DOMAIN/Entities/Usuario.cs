@@ -14,7 +14,7 @@ namespace ACADEMY.DOMAIN.Entities
         public bool? Estado { get; set; }
         public int? Intentos { get; set; }
         public DateTime? UltimaConexion { get; set; }
-        public DateTime? FechaActualizarPassword { get; set; }
+        public DateTime FechaActualizarPassword { get; set; }
 
 
         public int? IdPerfil { get; set; }

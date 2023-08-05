@@ -1,5 +1,4 @@
 ﻿using ACADEMY.DOMAIN.DTOs;
-using ACADEMY.DOMAIN.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace ACADEMY.DOMAIN.Interfaces.AppServices
 {
-    public interface IAuthService
+    public interface IAccountService
     {
-        Task<AcademyToken> Login(LoginDto usuarioDTO);
+        IAsyncEnumerable<OpcionDTO> GetMenu();
+        Task<UsuarioDTO> GetSesion();
     }
 }

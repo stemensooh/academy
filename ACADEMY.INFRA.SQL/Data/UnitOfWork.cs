@@ -10,6 +10,7 @@ namespace ACADEMY.INFRA.UOW.Data
         private readonly AcademyContext _context;
         private IUsuarioRepository _usuarioRepository;
         private ISesionRepository _sesionRepository;
+        private IPerfilRepository _perfilRepository;
 
         public UnitOfWork(AcademyContext context)
         {
@@ -25,6 +26,18 @@ namespace ACADEMY.INFRA.UOW.Data
                     _usuarioRepository = new UsuarioRepository(_context);
                 }
                 return _usuarioRepository;
+            }
+        }
+
+        public IPerfilRepository PerfilRepository
+        {
+            get
+            {
+                if (_perfilRepository == null)
+                {
+                    _perfilRepository = new PerfilRepository(_context);
+                }
+                return _perfilRepository;
             }
         }
 

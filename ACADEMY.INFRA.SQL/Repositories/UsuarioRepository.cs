@@ -1,4 +1,5 @@
-﻿using ACADEMY.DOMAIN.Entities;
+﻿using ACADEMY.DOMAIN.DTOs;
+using ACADEMY.DOMAIN.Entities;
 using ACADEMY.DOMAIN.Interfaces;
 using ACADEMY.INFRA.SQL.Data;
 using ACADEMY.INFRA.UOW.Repositories;
@@ -26,5 +27,35 @@ namespace ACADEMY.INFRA.SQL.Repositories
         {
             return _context.Usuario.Include(u => u.Perfil).FirstOrDefaultAsync(u => u.Username == Username);
         }
+
+
+        public Task<UsuarioDTO?> GetUsuarioSesion(long idUsuario, long idSesion)
+        {
+            return (from usuario in _context.Usuario
+                    join sesion in _context.UsuarioSesion
+                    on usuario.Id equals sesion.IdUsuario
+                    join perfil in _context.Perfil
+                    on usuario.IdPerfil equals perfil.Id
+                    where
+                        usuario.Id == idUsuario &&
+                        sesion.Id == idSesion
+                    select new UsuarioDTO
+                    {
+                        Estado = (usuario.Estado ?? false) && DateTime.Now <= usuario.FechaActualizarPassword && sesion.Estado,
+                        Rol = new PerfilDTO
+                        {
+                            Estado = perfil.Estado ?? false,
+                            Permisos = (from asigna in perfil.AsignaOpcionPerfil
+                                        join opcion in _context.Opciones
+                                        on asigna.IdOpcion equals opcion.Id
+                                        select new OpcionDTO
+                                        {
+                                            Estado = asigna.Estado && opcion.Estado,
+                                            Id = opcion.IdElemento
+                                        }).ToList()
+                        }
+                    }).FirstOrDefaultAsync();
+        }
+
     }
 }

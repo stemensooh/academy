@@ -11,6 +11,9 @@ namespace ACADEMY.DOMAIN.Entities
         public int Id { get; set; }
         public string? Nombre { get; set; }
         public string? Apellido { get; set; }
+        public bool? Estado { get; set; } 
         public List<Usuario>? Usuarios { get; set; }
+        public List<AsignaOpcionPerfil> AsignaOpcionPerfil { get; set; }
+
     }
 }

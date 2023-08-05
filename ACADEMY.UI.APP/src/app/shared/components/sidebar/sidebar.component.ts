@@ -1,7 +1,9 @@
-import { Component, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, ViewEncapsulation, HostListener, Input } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Menu, NavService } from '../../services/nav.service';
 import { LayoutService } from '../../services/layout.service';
+import { Observable } from 'rxjs';
+import { Opcion } from 'src/app/core/interfaces/roles';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,6 +12,7 @@ import { LayoutService } from '../../services/layout.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SidebarComponent {
+  @Input() opciones$: Observable<Opcion[]> | null = null;
 
   public iconSidebar;
   public menuItems: Menu[];
@@ -24,30 +27,30 @@ export class SidebarComponent {
 
   constructor(private router: Router, public navServices: NavService,
     public layout: LayoutService) {
-    this.navServices.items.subscribe(menuItems => {
-      this.menuItems = menuItems;
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          menuItems.filter(items => {
-            if (items.path === event.url) {
-              this.setNavActive(items);
-            }
-            if (!items.children) { return false; }
-            items.children.filter(subItems => {
-              if (subItems.path === event.url) {
-                this.setNavActive(subItems);
-              }
-              if (!subItems.children) { return false; }
-              subItems.children.filter(subSubItems => {
-                if (subSubItems.path === event.url) {
-                  this.setNavActive(subSubItems);
-                }
-              });
-            });
-          });
-        }
-      });
-    });
+    // this.navServices.items.subscribe(menuItems => {
+    //   this.menuItems = menuItems;
+    //   this.router.events.subscribe((event) => {
+    //     if (event instanceof NavigationEnd) {
+    //       menuItems.filter(items => {
+    //         if (items.path === event.url) {
+    //           this.setNavActive(items);
+    //         }
+    //         if (!items.children) { return false; }
+    //         items.children.filter(subItems => {
+    //           if (subItems.path === event.url) {
+    //             this.setNavActive(subItems);
+    //           }
+    //           if (!subItems.children) { return false; }
+    //           subItems.children.filter(subSubItems => {
+    //             if (subSubItems.path === event.url) {
+    //               this.setNavActive(subSubItems);
+    //             }
+    //           });
+    //         });
+    //       });
+    //     }
+    //   });
+    // });
 
   }
 
