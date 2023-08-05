@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+<ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.20" />
+    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="23.1.0" />
+    <PackageReference Include="UAParser" Version="3.1.47" />
+  </ItemGroup>
+
+<ItemGroup>
+  <ProjectReference Include="..\ACADEMY.DOMAIN\ACADEMY.DOMAIN.csproj" />
+  <ProjectReference Include="..\ACADEMY.INFRA.MAIL\ACADEMY.INFRA.MAIL.csproj" />
+  <ProjectReference Include="..\ACADEMY.INFRA.SQL\ACADEMY.INFRA.SQL.csproj" />
+</ItemGroup>
+
+</Project>
