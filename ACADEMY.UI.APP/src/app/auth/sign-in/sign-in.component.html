@@ -9,9 +9,9 @@
                             <h3 class="mb-5">Iniciar Sesión</h3>
 
                             <mdb-form-control class="mb-4">
-                                <input mdbValidate mdbInput formControlName="email" type="email" id="email"
+                                <input mdbValidate mdbInput formControlName="username" type="text" id="username"
                                     class="form-control form-control-lg" />
-                                <label mdbLabel class="form-label" for="email">Correo Electrónico</label>
+                                <label mdbLabel class="form-label" for="username">Usuario</label>
                             </mdb-form-control>
 
                             <mdb-form-control class="mb-4">
@@ -19,10 +19,14 @@
                                     class="form-control form-control-lg" />
                                 <label mdbLabel class="form-label" for="password">Contraseña</label>
                             </mdb-form-control>
+                            
+                            <div class="col-12 mt-1 mb-1">
+                                <div id="DivReCaptchaGoogle"></div>
+                              </div>
 
-                            <button class="btn btn-primary btn-lg btn-block" type="button" (click)="onSumit()"
+                            <button class="btn btn-primary btn-lg btn-block" type="button" (click)="onSumit()" [disabled]="isLoading || isLogin"
                                 [disabled]="!valid()">
-                                Iniciar Sesión
+                                {{isLoading ? 'CARGANDO CAPTCHA' : isLogin ? 'INGRESANDO' : 'INGRESAR'}}
                             </button>
 
                             <hr class="my-4">

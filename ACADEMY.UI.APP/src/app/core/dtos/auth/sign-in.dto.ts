@@ -1,4 +1,6 @@
+
 export interface SignInDto {
-    email: string;
+    username: string;
     password: string;
+    captcha: string;
 }

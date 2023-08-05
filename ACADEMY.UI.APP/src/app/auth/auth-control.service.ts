@@ -9,14 +9,15 @@ export class AuthControlService {
 
   toFormSignIn() {
     return this.fb.group({
-      email: [
-        null,
-        [
-          Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
-      password: [null, Validators.required],
+      // email: [
+      //   null,
+      //   [
+      //     Validators.required,
+      //     Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      //   ],
+      // ],
+      username: ['bcardenas', Validators.required],
+      password: ['12345678', Validators.required],
     });
   }
 

@@ -12,31 +12,35 @@ import { SignInDto } from '../dtos/auth/sign-in.dto';
 import { AuthResponse } from '../interfaces/auth-response.interface';
 import jwt_decode from 'jwt-decode';
 import { UsuarioToken } from '../interfaces/usuario-token.interface';
+import { Captcha } from '../interfaces/utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private urlApi: string;
+  private url: string;
   private handleError!: HandleError;
   constructor(
-    private httpCliente: HttpClient,
+    private http: HttpClient,
     httpErrorHandler: HttpErrorHandlerService
   ) {
     this.handleError = httpErrorHandler.createHandleError('AuthService');
-    this.urlApi = '/auth';
+    this.url = '/api/auth';
   }
 
+  getCaptchaConfig = () => this.http.get<Captcha>(`${this.url}/captcha`)
+    .pipe(catchError(this.handleError<Captcha>('getCaptchaConfig')));
+
   signIn(model: SignInDto): Observable<HttpResponse<HttpResult>> {
-    const url = `${this.urlApi}/sign-in`;
-    return this.httpCliente
+    const url = `${this.url}/login`;
+    return this.http
       .post<HttpResult>(url, model, httpOptions)
       .pipe(catchError(this.handleError<HttpResponse<HttpResult>>('signIn')));
   }
 
   signUp(model: SignUpDto): Observable<HttpResponse<HttpResult>> {
-    const url = `${this.urlApi}/sign-up`;
-    return this.httpCliente
+    const url = `${this.url}/sign-up`;
+    return this.http
       .post<HttpResult>(url, model, httpOptions)
       .pipe(catchError(this.handleError<HttpResponse<HttpResult>>('signUp')));
   }
